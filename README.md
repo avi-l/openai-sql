@@ -1,5 +1,6 @@
 # SQL Query Generator
 
+![Screenshot](client/src/assets/screenshot.png)
 
 
 This repository contains a React TypeScript client and Node TypeScript server that work together to generate SQL queries from natural language prompts using OpenAI's API.
