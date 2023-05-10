@@ -20,11 +20,10 @@ app.listen(port, () => {
 app.post('/generate', async (req, res) => {
     try {
         const queryDescription = req.body.queryDescription
-        console.log(`Query: ${queryDescription}`)
         const sqlQuery = await generate(queryDescription)
-        res.json({ response: sqlQuery})
+        res.json(sqlQuery)
     } catch (error) {
         console.error(error)
-        res.status(500).send("Internal Server Error")
+        res.json(error)
     }
 })

@@ -1,14 +1,29 @@
 import styles from './index.module.css'
 import sqlLogo from './assets/sql-logo.png'
 import { useState } from 'react'
+import axios from 'axios'
 
 export const App = () => {
 
   const [query, setQuery] = useState<string>('Describe your query')
+  const [sqlQuery, setSqlQuery] = useState<string>('')
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault()
-    console.log('Form Submitted', query)
+    setSqlQuery('')
+    const res = await generateQuery()
+    setSqlQuery(res?.message)
+    console.log('result: ', res)
+
+  }
+
+  const generateQuery = async () => {
+    try {
+      const res = await axios.post('http://localhost:3005/generate', query)
+      return res?.data
+    } catch (error) {
+      return error
+    }
 
   }
   return (
@@ -22,6 +37,7 @@ export const App = () => {
           onChange={(e) => setQuery(e.target.value)}
         />
         <input type='submit' value='Generate Query' />
+        <pre>{sqlQuery}</pre>
       </form>
     </main>
   )
