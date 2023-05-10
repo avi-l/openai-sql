@@ -4,7 +4,6 @@ import { useState } from 'react'
 import axios from 'axios'
 
 export const App = () => {
-
   const [query, setQuery] = useState<string>('Describe your query')
   const [sqlQuery, setSqlQuery] = useState<string>('')
 
@@ -13,8 +12,6 @@ export const App = () => {
     setSqlQuery('')
     const res = await generateQuery()
     setSqlQuery(res?.message)
-    console.log('result: ', res)
-
   }
 
   const generateQuery = async () => {
@@ -24,8 +21,8 @@ export const App = () => {
     } catch (error) {
       return error
     }
-
   }
+  
   return (
     <main className={styles.main}>
       <img src={sqlLogo} className={styles.icon} />

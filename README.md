@@ -1,4 +1,4 @@
-# SQL Query Generator
+# SQL OpenAI Query Generator
 
 ![Screenshot](client/src/assets/screenshot.png)
 

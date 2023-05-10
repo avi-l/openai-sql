@@ -23,7 +23,6 @@ app.post('/generate', async (req, res) => {
         const sqlQuery = await generate(queryDescription)
         res.json(sqlQuery)
     } catch (error) {
-        console.error(error)
         res.json(error)
     }
 })

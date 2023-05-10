@@ -2,7 +2,6 @@ import { ChatCompletionRequestMessage } from 'openai'
 import openaiClient from './api'
 
 export const generate = async (queryDescription: string) => {
-
     const daVinci = async (queryDescription: string) => {
         const response = await openaiClient.createCompletion({
             model: 'text-davinci-003',
@@ -12,7 +11,6 @@ export const generate = async (queryDescription: string) => {
         })
         return response.data.choices[0].text
     }
-    
     const chatGptApi = async (queryDescription: string) => {
         const messages: ChatCompletionRequestMessage[] = [
             { role: 'system', content: `You are a translator from plain english to SQL` },
@@ -27,6 +25,4 @@ export const generate = async (queryDescription: string) => {
         return response.data.choices[0].message?.content
     }
     return await chatGptApi(queryDescription)
-
-
 }
